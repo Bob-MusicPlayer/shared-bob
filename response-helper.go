@@ -74,3 +74,9 @@ func (rh *ResponseHelper) DecodeBody(body interface{}) error {
 
 	return err
 }
+
+func (rh *ResponseHelper) ReturnError(err error) {
+		rh.w.WriteHeader(901)
+		_, err = rh.w.Write([]byte(err.Error()))
+		if rh.ReturnHasError(err) {}
+}
