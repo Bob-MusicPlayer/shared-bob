@@ -3,9 +3,9 @@ package shared
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/Bob-MusicPlayer/shared-bob/model"
 	"net/http"
 	"net/url"
-	"shared-bob/model"
 	"strings"
 )
 

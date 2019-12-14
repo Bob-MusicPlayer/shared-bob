@@ -2,14 +2,14 @@ package shared
 
 import (
 	"encoding/json"
+	"github.com/Bob-MusicPlayer/shared-bob/helper"
 	"io/ioutil"
 	"net/http"
-	"shared-bob/helper"
 	"strings"
 )
 
 type ResponseHelper struct {
-	w http.ResponseWriter
+	w   http.ResponseWriter
 	req *http.Request
 }
 
@@ -28,7 +28,7 @@ func (rh *ResponseHelper) ReturnOptionsOrNotAllowed(methods ...string) bool {
 
 	rh.w.Header().Set("Access-Control-Allow-Origin", "*")
 	rh.w.Header().Set("Access-Control-Allow-Methods", strings.Join(methods, ", "))
-	rh.w.Header().Set("Content-Type","application/json; charset=utf-8")
+	rh.w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if rh.req.Method == http.MethodOptions {
 		rh.w.WriteHeader(http.StatusNoContent)
@@ -76,7 +76,8 @@ func (rh *ResponseHelper) DecodeBody(body interface{}) error {
 }
 
 func (rh *ResponseHelper) ReturnError(err error) {
-		rh.w.WriteHeader(901)
-		_, err = rh.w.Write([]byte(err.Error()))
-		if rh.ReturnHasError(err) {}
+	rh.w.WriteHeader(901)
+	_, err = rh.w.Write([]byte(err.Error()))
+	if rh.ReturnHasError(err) {
+	}
 }
